@@ -1,69 +1,63 @@
 class ArrayListInt {
-    private int size = 0;
-    private int[] list;
+    private int size;
+    private int[] items;
 
     ArrayListInt() {
-        list = new int[size];
+        size = 0;
+        items = new int[size];
     }
 
     int size() {
-        return list.length;
+        return size;
     }
 
     int get(int index) {
-        try {
-            return list[index];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.printf("This array doesn't have element with index: %d.\n", index);
-        }
-
-        return 0;
+        return items[index];
     }
 
     void set(int index, int value) {
-        try {
-            list[index] = value;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.printf("This array doesn't have element with index: %d.\n", index);
-        }
+        items[index] = value;
     }
 
-    void remove(int index) {
-        try{
-            size--;
+    void remove(int removalIndex) {
+        size--;
 
-            int[] array = new int[size];
+        int[] newItems = new int[size];
 
-            for (int i = 0, k = 0; i < list.length; i++) {
-                if (i == index) {
-                    continue;
-                }
-                array[k++] = list[i];
+        for (int i = 0, k = 0; i < items.length; i++) {
+            if (i != removalIndex) {
+                newItems[k++] = items[i];
             }
-
-            list = array;
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.err.printf("This array doesn't have element with index: %d.\n", index);
         }
+
+        items = newItems;
     }
 
     //Add's element to last index
 
-    void add(int v) {
+    void add(int value) {
         size++;
 
-        int[] array = new int[size];
+        int[] newItems = new int[size];
 
-        System.arraycopy(list, 0, array, 0, list.length);
+        System.arraycopy(items, 0, newItems, 0, items.length);
 
-        array[array.length - 1] = v;
+        newItems[newItems.length - 1] = value;
 
-        this.list = array;
+        items = newItems;
     }
 
     //TODO create another Add() method that get (int index, int value) and etc...
 
-    void add(int i, int v) {
-        //TODO
+    void add(int index, int value) {
+        int[] newItems = new int[size++];
+
+        System.arraycopy(items, 0, newItems, 0, index);
+
+        newItems[index] = value;
+
+        System.arraycopy(items, index, newItems, index + 1, items.length - index);
+
+        items = newItems;
     }
 }

@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> numbers = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
+
+        ArrayList<Integer> numbers = new ArrayList<>();
 
         String[] integers = sc.nextLine().split("\\s");
 
@@ -14,21 +14,29 @@ public class Main {
         }
 
         System.out.println("Before reversing: ");
-        System.out.println(returnStringFromArray(numbers));
+        printArray(numbers);
 
-        Collections.reverse(numbers);
+        reverseNumbers(numbers);
 
         System.out.println("After reversing: ");
-        System.out.println(returnStringFromArray(numbers));
+        printArray(numbers);
+
+        System.out.println("===================");
     }
 
-    private static StringBuilder returnStringFromArray(ArrayList<Integer> numbers) {
-        StringBuilder s = new StringBuilder();
-
-        for (int number : numbers) {
-            s.append(number).append(" ");
+    private static void printArray(ArrayList<Integer> numbers) {
+        for (Integer number : numbers) {
+            System.out.print(number + " ");
         }
 
-        return s;
+        System.out.println();
+    }
+
+    private static void reverseNumbers(ArrayList<Integer> numbers) {
+        for (int i = 0, j = numbers.size() - 1; i < j; i++, j--) {
+            int temp = numbers.get(i);
+            numbers.set(i, numbers.get(j));
+            numbers.set(j, temp);
+        }
     }
 }

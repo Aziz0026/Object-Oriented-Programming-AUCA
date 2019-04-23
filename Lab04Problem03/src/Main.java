@@ -2,21 +2,13 @@ public class Main {
     public static void main(String[] args) {
         ArrayListInt array = new ArrayListInt();
 
-        array.add(8);
-        array.add(2);
-        array.add(3);
-        array.add(7);
-        array.add(3);
+        int counter = 0;
+        while (counter != 100000000) {
+            array.add(counter);
+            counter++;
 
-        printArray(array);
-        System.out.println();
-
-        array.remove(3);
-        array.remove(2);
-
-        printArray(array);
-        System.out.println();
-
+            System.out.println(counter);
+        }
     }
 
     private static void printArray(ArrayListInt array) {

@@ -1,5 +1,3 @@
-import javax.management.DynamicMBean;
-
 public class Rational {
     //State
     private int numerator;
